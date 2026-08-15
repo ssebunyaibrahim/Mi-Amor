@@ -112,16 +112,38 @@
             text-shadow: 0 0 10px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 20, 147, 0.6);
             will-change: transform, opacity; /* Performance optimization */
         }
+
+        /* Fix for mobile browser scroll jitter (address bar hiding/showing) */
+        .mobile-fixed-bg {
+            position: fixed;
+            top: -10vh;
+            left: -10vw;
+            width: 120vw;
+            height: 120vh;
+            z-index: 0;
+            pointer-events: none;
+            transform: translateZ(0); /* Force GPU hardware acceleration */
+            will-change: transform;
+        }
+        .mobile-fixed-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mobile-fixed-bg .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-white/20 selection:text-white">
 
     <!-- BACKGROUND IMAGE -->
-    <div class="fixed inset-0 z-0 w-full h-full pointer-events-none">
-        <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/background.jpg?raw=true" alt="Background" class="w-full h-full object-cover">
-        
+    <div class="mobile-fixed-bg">
+        <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/background.jpg?raw=true" alt="Background">
         <!-- Light overlay to make text easy to read while keeping background image fully vibrant -->
-        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="overlay"></div>
     </div>
 
     <!-- FLOATING HEARTS LAYER (Placed at z-50 above everything) -->
