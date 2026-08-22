@@ -7,7 +7,6 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Cormorant Garamond for elegant, romantic headings. Inter for highly readable body text -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -20,7 +19,7 @@
                         'body': ['"Inter"', 'sans-serif'],
                     },
                     colors: {
-                        'romantic-dark': '#050508',
+                        'romantic-dark': '#0a0a0c',
                         'romantic-text': '#f4f0eb',
                     }
                 }
@@ -30,7 +29,7 @@
 
     <style>
         body, html {
-            background-color: #030305;
+            background-color: #050505;
             color: #f4f0eb;
             margin: 0;
             padding: 0;
@@ -38,18 +37,16 @@
             scroll-behavior: smooth;
         }
 
-        /* Gentle floating animation for the photo to make it feel alive */
         @keyframes breathe {
-            0% { transform: translateY(0px); box-shadow: 0 10px 30px -10px rgba(255,255,255,0.1); }
-            50% { transform: translateY(-8px); box-shadow: 0 20px 45px -10px rgba(255,182,193,0.25); }
-            100% { transform: translateY(0px); box-shadow: 0 10px 30px -10px rgba(255,255,255,0.1); }
+            0% { transform: translateY(0px); box-shadow: 0 10px 30px -10px rgba(255,255,255,0.05); }
+            50% { transform: translateY(-8px); box-shadow: 0 15px 40px -10px rgba(255,255,255,0.15); }
+            100% { transform: translateY(0px); box-shadow: 0 10px 30px -10px rgba(255,255,255,0.05); }
         }
 
         .animate-breathe {
             animation: breathe 6s ease-in-out infinite;
         }
 
-        /* Initial soft fade-in for the opening screen */
         @keyframes softFadeIn {
             from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -60,60 +57,28 @@
             opacity: 0;
         }
 
-        .delay-1 { animation-delay: 0.3s; }
-        .delay-2 { animation-delay: 0.8s; }
-        .delay-3 { animation-delay: 1.3s; }
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1.5s; }
+        .delay-3 { animation-delay: 2.5s; }
 
         .text-shadow-subtle {
-            text-shadow: 0 2px 15px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* Hide scrollbar for cinematic feel */
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
         }
         
         @keyframes pulse-subtle {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
+            0%, 100% { transform: scale(1); opacity: 0.7; }
             50% { transform: scale(1.1); opacity: 1; }
         }
         .music-pulse {
             animation: pulse-subtle 3s infinite ease-in-out;
         }
 
-        @keyframes floatUpExactMid {
-            0% {
-                transform: translateY(100vh) scale(0.6) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1; /* Make fully visible quickly */
-            }
-            80% {
-                opacity: 1;
-                transform: translateY(55vh) scale(1.1) rotate(15deg); /* Reach near mid-screen */
-            }
-            100% {
-                transform: translateY(50vh) scale(1.2) rotate(20deg); /* Exactly mid-screen */
-                opacity: 0; /* Fade out completely */
-            }
-        }
-
-        .floating-heart {
-            position: fixed;
-            bottom: 0; /* Start from the very bottom edge */
-            z-index: 9999; /* Extremely high z-index to ensure they are on top of everything */
-            pointer-events: none; /* Let clicks pass through */
-            user-select: none;
-            animation: floatUpExactMid linear forwards;
-            /* Enhanced visibility for the hearts */
-            font-size: 2rem; 
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 20, 147, 0.6);
-            will-change: transform, opacity; /* Performance optimization */
-        }
-
-        /* Fix for mobile browser scroll jitter (address bar hiding/showing) */
+        /* Fix for mobile browser scroll jitter */
         .mobile-fixed-bg {
             position: fixed;
             top: -10vh;
@@ -122,9 +87,10 @@
             height: 120vh;
             z-index: 0;
             pointer-events: none;
-            transform: translateZ(0); /* Force GPU hardware acceleration */
+            transform: translateZ(0); /* Hardware acceleration */
             will-change: transform;
         }
+        
         .mobile-fixed-bg img {
             width: 100%;
             height: 100%;
@@ -134,6 +100,35 @@
             position: absolute;
             inset: 0;
             background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100px) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            75% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            bottom: -50px;
+            z-index: 9999; /* Ensures hearts are visible over everything */
+            pointer-events: none;
+            user-select: none;
+            animation: floatUp linear forwards;
+            font-size: 0.1rem;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+            will-change: transform, opacity;
         }
     </style>
 </head>
@@ -146,17 +141,14 @@
         <div class="overlay"></div>
     </div>
 
-    <!-- FLOATING HEARTS LAYER (Placed at z-50 above everything) -->
-    <!-- Removed overflow-hidden to ensure hearts can render outside if needed, though they shouldn't here -->
+    <!-- FLOATING HEARTS LAYER -->
     <div id="hearts-container" class="fixed inset-0 z-50 pointer-events-none"></div>
 
-    <!-- AUDIO -->
     <audio id="bg-audio" loop>
-        <source src="https://raw.githubusercontent.com/ssebunyaibrahim/Mi-Amor/refs/heads/main/BACKGROUND%20MUSIC.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/ssebunyaibrahim/Mi-Amor/refs/heads/main/Ed%20Sheeran%20-%20Photograph%20(Lyrics)%20song.mp3" type="audio/mpeg" type="audio/mpeg">
     </audio>
 
-    <!-- Floating Audio Toggle -->
-    <button id="audio-toggle" class="fixed top-6 right-6 z-50 w-10 h-10 rounded-full border border-white/30 bg-black/40 backdrop-blur-md flex items-center justify-center text-white/90 transition-all duration-500 hover:bg-white/20 music-pulse" aria-label="Toggle Music">
+    <button id="audio-toggle" class="fixed top-6 right-6 z-[100] w-10 h-10 rounded-full border border-white/20 bg-black/30 backdrop-blur-md flex items-center justify-center text-white/80 transition-all duration-500 hover:bg-white/10 music-pulse" aria-label="Toggle Music">
         <svg id="icon-play" class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"/>
         </svg>
@@ -165,32 +157,43 @@
         </svg>
     </button>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="relative z-30 w-full flex flex-col items-center justify-start text-romantic-text">
+    <main class="relative z-10 w-full flex flex-col items-center justify-start text-romantic-text">
         
-        <!-- OPENING SCENE -->
         <section class="w-full max-w-md px-8 flex flex-col items-center pt-[10vh] text-center">
             
-            <!-- Slideshow Photo Container -->
             <div class="relative mb-8 fade-in-on-load delay-1">
-                <div class="absolute -inset-2 bg-white/10 rounded-[2rem] blur-xl"></div>
+                <div class="absolute -inset-2 bg-white/5 rounded-[2rem] blur-xl"></div>
                 
-                <div id="slideshow-container" class="relative w-48 h-64 rounded-[1.5rem] border border-white/20 overflow-hidden animate-breathe cursor-pointer shadow-2xl">
+                <div id="slideshow-container" class="relative w-48 h-64 rounded-[1.5rem] border border-white/10 overflow-hidden animate-breathe cursor-pointer">
                     <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Together.jpeg?raw=true" alt="Memory 1" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100">
                     <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Nelly.jpeg?raw=true" alt="Memory 2" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                     <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Ibra.jpeg?raw=true" alt="Memory 3" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
                     <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/heart%20photo.png?raw=true" alt="Memory 4" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
-                    
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/3333333455.jpeg?raw=true" alt="Memory 5" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Imagddddddde%202026-08-22%20at%203.09.45%20AM.jpeg?raw=true" alt="Memory 6" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Image%202026-08-14%20at%209.57.38%20PM.jpeg?raw=true" alt="Memory 7" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Image%202026-08-14%20at%209.57.40%20PM.jpeg?raw=true" alt="Memory 8" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Image%202026-08-22%20at%203.09.43%20AM.jpeg?raw=true" alt="Memory 9" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Image%202026-08-22%20at%203.09.44%20AM.jpeg?raw=true" alt="Memory 10" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Image%202026-08333-14%20at%209.57.39%20PM.jpeg?raw=true" alt="Memory 11" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApp%20Image%202026444444-08-14%20at%209.57.40%20PM.jpeg?raw=true" alt="Memory 12" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsAppdddd%20Image%202026-08-22%20at%203.09.44%20AM.jpeg?raw=true" alt="Memory 13" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+                    <img src="https://github.com/ssebunyaibrahim/Mi-Amor/blob/main/Photos/WhatsApwewewffp%20Image%202026-08-22%20at%203.09.45%20AM.jpeg?raw=true" alt="Memory 14" class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0">
+
+
+
+
+
                     <div class="absolute bottom-3 left-0 right-0 flex justify-center space-x-1.5 z-20 pointer-events-none">
-                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/90 transition-all duration-300"></span>
-                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/40 transition-all duration-300"></span>
-                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/40 transition-all duration-300"></span>
-                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/40 transition-all duration-300"></span>
+                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/80 transition-all duration-300"></span>
+                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
+                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
+                        <span class="dot w-1.5 h-1.5 rounded-full bg-white/30 transition-all duration-300"></span>
                     </div>
                 </div>
             </div>
 
-            <h1 class="font-display italic text-4xl md:text-5xl mb-6 tracking-wide text-shadow-subtle fade-in-on-load delay-2 text-white">
+            <h1 class="font-display italic text-4xl md:text-5xl mb-6 tracking-wide text-shadow-subtle fade-in-on-load delay-2 text-white/95">
                 Hey baby ❤️,
             </h1>
 
@@ -199,7 +202,6 @@
             </p>
         </section>
 
-        <!-- LOVE LETTER SECTIONS -->
         <div class="w-full max-w-sm px-6 pb-48 flex flex-col items-center text-center space-y-12 mt-8">
             
             <div class="w-full flex justify-center">
@@ -255,40 +257,31 @@
     </main>
 
     <script>
-        // --- FLOATING HEARTS GENERATOR (Rising to Mid-Screen 50vh) ---
+        // --- FLOATING HEARTS GENERATOR ---
         const heartsContainer = document.getElementById('hearts-container');
-        const heartSymbols = ['❤️', '💖', '💗', '💓', '💕']; // Using more vibrant heart emojis
+        const heartSymbols = ['❤️', '✨', '🤍', '🤎', '💖','💗', '💓', '💕'];
 
         function createFloatingHeart() {
-            if (!heartsContainer) return; // Safety check
-            
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
             heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
             
-            // Random horizontal start position (keep away from extreme edges)
-            const randomLeft = Math.random() * 90 + 5; 
-            heart.style.left = randomLeft + 'vw';
+            heart.style.left = Math.random() * 100 + 'vw';
             
-            // Animation duration between 3s and 5s
-            const duration = Math.random() * 2 + 3;
+            const duration = Math.random() * 8 + 10;
             heart.style.animationDuration = duration + 's';
             
-            // Randomize starting rotation slightly
-            heart.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+            const scale = Math.random() * 0.6 + 0.8;
+            heart.style.fontSize = (scale * 0.6) + 'rem';
 
             heartsContainer.appendChild(heart);
 
-            // Clean up DOM after animation completes
             setTimeout(() => {
-                if (heart.parentNode === heartsContainer) {
-                    heart.remove();
-                }
+                heart.remove();
             }, duration * 1000);
         }
 
-        // Spawn hearts frequently (every 400ms)
-        const heartInterval = setInterval(createFloatingHeart, 400);
+        setInterval(createFloatingHeart, 800);
 
         // --- AUDIO CONTROLS ---
         const audio = document.getElementById('bg-audio');
@@ -329,11 +322,11 @@
             });
             dots.forEach((dot, i) => {
                 if (i === index) {
-                    dot.classList.remove('bg-white/40');
-                    dot.classList.add('bg-white/90', 'w-3');
+                    dot.classList.remove('bg-white/30');
+                    dot.classList.add('bg-white/80', 'w-3');
                 } else {
-                    dot.classList.remove('bg-white/90', 'w-3');
-                    dot.classList.add('bg-white/40', 'w-1.5');
+                    dot.classList.remove('bg-white/80', 'w-3');
+                    dot.classList.add('bg-white/30', 'w-1.5');
                 }
             });
         }
@@ -379,7 +372,7 @@
 
         const observerOptions = {
             root: null,
-            rootMargin: '0px 0px -20% 0px', 
+            rootMargin: '0px 0px -25% 0px', 
             threshold: 0
         };
 
@@ -403,7 +396,7 @@
                                 if (['.', ',', '!', '?'].includes(char)) {
                                     delay = 300;
                                 } else {
-                                    delay = Math.random() * 30 + 15;
+                                    delay = Math.random() * 35 + 20;
                                 }
                             }
                             
